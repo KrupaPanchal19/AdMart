@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+      
+        $(function(){
+            $('#handle').css('height',$('#drag-resize-me').height()).css('width',$('#drag-resize-me').width());
+            $("#handle").draggable({
+                drag: function(event,ui)
+                {
+                    $('#drag-resize-me').css('left',ui.position.left).css('top',ui.position.top);
+                }
+            });
+            $("#handle").resizable({
+                alsoResize:'#drag-resize-me',
+                handles: 'all',
+                resize: function(event,ui)
+                {
+                    $('#drag-resize-me').css('left',ui.position.left).css('top',ui.position.top);
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+    #workbox{
+        width: 401px;
+        height: 511px;
+        position: relative;
+        border: 5px #000 solid;
+        overflow: hidden;
+    }
+    #phone{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #drag-resize-me{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #handle{
+        border: 1px #ccc solid;
+    }
+    .main
+    {
+        resize: both;
+        overflow: auto;
+    }
+</style>
+</head>
+<body>
+    <div id='workbox'>
+        <img src="http://tryimg.com/4/01.png" id="drag-resize-me" class="main" />
+        <img src="http://tryimg.com/4/phone.png"id="phone"/>
+        <div id="handle"></div>
+    </div>
+</body>
+</html>
